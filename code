@@ -1,0 +1,36 @@
+#include <iostream>
+
+using namespace std;
+
+int fv[10001], i;
+
+int cmmnr(unsigned long long n)
+{
+    unsigned long long k = 0;
+    
+    while(n > 0)
+    {
+        fv[n % 10] ++;
+        n = n / 10;
+    }
+    
+    bool ok = false;
+    
+    for(i = 1; i <= 9; i ++)
+    {
+        while(fv[i] > 0)
+        {
+            ok = true;
+            fv[i] --;
+            k = k * 10 + i;
+            
+            while(fv[0] > 0)
+            {
+                fv[0] --;
+                k = k * 10;
+            }
+        }
+    }
+    
+    return k;
+}
